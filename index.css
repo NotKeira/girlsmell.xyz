@@ -20,6 +20,14 @@ body {
   padding: 0 20px;
 }
 
+/* Common Transitions */
+.card,
+.tech-tag,
+.git-link,
+.fun-item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
 /* Header Styles */
 .header {
   padding: 40px 0;
@@ -105,7 +113,6 @@ body {
   margin: 30px 0;
   box-shadow: 0 8px 32px rgba(255, 20, 147, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
@@ -159,7 +166,6 @@ body {
   font-size: 0.9rem;
   font-weight: 500;
   box-shadow: 0 4px 15px rgba(255, 20, 147, 0.3);
-  transition: transform 0.2s ease;
 }
 
 .tech-tag:hover {
@@ -182,7 +188,6 @@ body {
   border-radius: 15px;
   text-decoration: none;
   color: inherit;
-  transition: all 0.3s ease;
   border: 2px solid transparent;
 }
 
@@ -240,7 +245,6 @@ body {
   padding: 20px;
   background: rgba(255, 255, 255, 0.4);
   border-radius: 15px;
-  transition: transform 0.3s ease;
 }
 
 .fun-item:hover {
@@ -295,11 +299,11 @@ body {
   animation-delay: 0.6s;
 }
 
-/* Animations */
+/* Animations - Optimized for performance */
 @keyframes gentle-bob {
   0%,
   100% {
-    transform: translateY(0px);
+    transform: translateY(0);
   }
   50% {
     transform: translateY(-10px);
@@ -308,7 +312,7 @@ body {
 
 @keyframes float {
   0% {
-    transform: translateY(0px) rotate(0deg);
+    transform: translateY(0) rotate(0deg);
   }
   100% {
     transform: translateY(-10px) rotate(5deg);
@@ -318,10 +322,33 @@ body {
 @keyframes gentle-bounce {
   0%,
   100% {
-    transform: translateY(0px);
+    transform: translateY(0);
   }
   50% {
     transform: translateY(-5px);
+  }
+}
+
+/* Animation performance optimization */
+.avatar,
+.blahaj-float,
+.shark {
+  will-change: transform;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .avatar,
+  .blahaj-float,
+  .shark {
+    animation: none;
+  }
+
+  .card,
+  .tech-tag,
+  .git-link,
+  .fun-item {
+    transition: none;
   }
 }
 
